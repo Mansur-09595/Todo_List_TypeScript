@@ -3,8 +3,8 @@ import './App.css';
 import Todo from './components/Todo';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
 import { getTodos, addTodo } from "./store/reducers/user/todoAction"
-import uuid from 'react-uuid';
-import { ITodos } from './types/ITodos';
+import Logo from "./images/Logo.png"
+import Unicode from "./images/Unicode.png"
 
 function App() {
   const dispatch = useAppDispatch()
@@ -13,16 +13,11 @@ function App() {
 
   useEffect(() => {
     dispatch(getTodos())
-  },[])
+  },[dispatch])
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(addTodo({
-      _id: new Date().toISOString(),
-      title: "",
-      created_at: new Date().toISOString(),
-      completed: true
-    }));
+    dispatch(addTodo(newTodo));
     setNewTodo("")
   };
 
@@ -35,16 +30,23 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <input value={newTodo} type="text" onChange={handleInputChange} />
-        <button type="submit">Add Todo</button>
-      </form>
-      <>
-      {todos.map(todo => (
-        <Todo key={todo._id} todo={todo} />
-      ))}
-      </>
+    <div className="form">
+      <div className="navbar">
+        <img className="todo-logo" src={Logo} alt="todo logo"/>
+        <img className="unicode-logo" src={Unicode} alt="unicode logo"/>
+      </div>
+      <div className="addForm">
+        <input className="input_name" value={newTodo} type="text" onChange={handleInputChange} />
+        <button className="button" onClick={handleSubmit} type="submit">Добавить</button>
+      </div>
+      <div className="ul">
+      {todos.length === 0 ? (
+          <div>У вас пока нет добавленных задач</div>
+        ) : (
+        todos.map(todo => (
+          <Todo key={todo._id} todo={todo} />
+        )))}
+      </div>
     </div>
   );
 }

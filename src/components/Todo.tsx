@@ -15,11 +15,8 @@ const Todo: React.FC<Props> = ({ todo }) => {
   };
 
   return (
-    <div>
-      <p>{todo.title}</p>
-       <pre key={todo._id}>
-          <button onClick={() => handleDelete(todo._id)}>Delete</button>
-        </pre>
+    <div className="li">
+      <p className="p">{todo.title}<button className="fa-solid fa-trash" onClick={() => handleDelete(todo._id)}></button></p>
     </div>
   )
 }

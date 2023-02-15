@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ITodos } from "../../../types/ITodos";
 
 export const getTodos = createAsyncThunk(
     "users/upload", 
@@ -10,7 +9,7 @@ export const getTodos = createAsyncThunk(
 
 export const addTodo = createAsyncThunk(
     "todos/add", 
-    async function (title: ITodos) {
+    async function (title: string) {
         const res = await fetch("https://unicode-todo.onrender.com/todos", {
           method: "POST",
           headers: {
@@ -25,9 +24,9 @@ export const addTodo = createAsyncThunk(
 export const deleteTodo = createAsyncThunk(
   "todos/delete",
   async (_id: string) => {
-    const res = await fetch(`https://unicode-todo.onrender.com/todos/${_id}`, {
+    await fetch(`https://unicode-todo.onrender.com/todos/${_id}`, {
       method: "DELETE",
     });
-    return await res.json();
+    return _id;
   }
 );

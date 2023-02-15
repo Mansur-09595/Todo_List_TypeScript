@@ -31,10 +31,10 @@ export const todoSlice = createSlice({
     //deleteTodo
     builder.addCase(deleteTodo.pending, (state) => {
       state.isLoading = true
-  })
-
-    builder.addCase(deleteTodo.fulfilled, (state, action: PayloadAction<ITodos>) => {
-      state.todos = state.todos.filter((todo) => todo._id !== action.payload._id);
+    })
+    builder.addCase(deleteTodo.fulfilled, (state, action: PayloadAction<string>) => {
+      state.isLoading = false
+      state.todos = state.todos.filter((todo) => todo._id !== action.payload);
     });
   }
 });

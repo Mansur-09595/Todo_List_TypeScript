@@ -8,4 +8,6 @@ export interface ITodos {
 export type todoState = {
   todos: ITodos[];
   isLoading: boolean;
+  isLoadingAddTodo: boolean,
+  isLoadingRemoveTodo: boolean,
 };

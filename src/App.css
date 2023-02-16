@@ -1,23 +1,27 @@
 .form {
-  width: 1440px;
+  max-width: 1440px;
   height: 1024px;
   background: #262626;
   margin: auto;
-  margin-top: 17px;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
 .input_name {
+  padding: 16px;
+  border: 1px solid #0D0D0D;
+  border-radius: 8px;
   background: #262626;
   margin-bottom: 20px;
-  border-color: #1e1e1e;
   width: 600px;
-  height: 50px;
+  height: 55px;
 }
 
 .button {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 140%;
   margin-left: 8px;
   cursor: pointer;
   margin-bottom: 20px;
@@ -29,6 +33,7 @@
 }
 
 .ul {
+  width: 736px;
   position: relative;
   top: 190px;
   list-style-type: none;
@@ -37,19 +42,22 @@
 .li {
   margin-bottom: 20px;
   border: 2px solid #000000;
-  width: 800px;
-  height: 70px;
+  width: 736px;
+  height: 72px;
 }
 
 .p {
   padding: 7px 40px;
+  padding: 0;
+  margin: 0;
+  color: white;
 }
 
 .fa-solid {
   border: none;
-  color: red;
+  background: #808080;
   background: rgba(255, 255, 255, 0);
-  font-size: 30px;
+  font-size: 25px;
   float: right;
 }
 
@@ -70,7 +78,6 @@
 }
 
 .todo-logo {
-  margin-top: 70px;
   margin-right: 9px;
   width: 126px;
   height: 48px;
@@ -79,9 +86,74 @@
 }
 
 .unicode-logo {
-  margin-top: 88px;
+  margin-top: 18px;
   width: 111px;
   height: 24px;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.spinner-border {
+  width: 1em;
+  height: 1em;
+}
+
+input:checked + p {
+  text-decoration: line-through;
+}
+
+.tasks {
+  margin-top: 27px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.counts {
+  margin-left: 11px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 2px 8px;
+  border-radius: 15px;
+  background: #333333;
+}
+
+.counts + .left {
+  margin-left: 0;
+}
+
+.count-tasks {
+  margin-right: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #4EA8DE;
+}
+
+.count-tasks-decide {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8284FA;
+}
+
+.no-tasks-blocks {
+  display: flex;
+  flex-direction: column;
+  padding: 85px;
+}
+
+.fa-clipboard {
+  margin: auto;
+  margin-bottom: 16px;
+  font-size: 52px;
+  color: #808080;
+}
+
+.no-tasks {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  text-align: center;
+  color: #808080;
 }

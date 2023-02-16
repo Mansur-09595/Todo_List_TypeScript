@@ -30,3 +30,34 @@ export const deleteTodo = createAsyncThunk(
     return _id;
   }
 );
+
+export const updateTodo = createAsyncThunk(
+  "todos/update",
+  async ({ _id, completed }: { _id: string, completed: boolean }) => {
+    const res = await fetch(`https://unicode-todo.onrender.com/todos/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ completed }),
+    });
+    if (!res.ok) {
+      throw new Error("Failed to update todo.");
+    }
+    return await res.json()
+  }
+);
+
+// export const updateTodo = createAsyncThunk(
+//   "todos/update",
+//   async (title: string) => {
+//     const res = await fetch(`https://unicode-todo.onrender.com/todos/${title}`, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ title }),
+//     });
+//     return await res.json()
+//   }
+// );

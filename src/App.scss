@@ -1,7 +1,20 @@
+$purple: #8284FA;
+$purple-dark: #5E60CE;
+$blue: #4EA8DE;
+$blue-dark: #1E6F9F;
+$gray-100: #F2F2F2;
+$gray-200: #D9D9D9;
+$gray-300: #808080;
+$gray-400: #333333;
+$gray-500: #262626;
+$gray-600: #1A1A1A;
+$gray-700: #0D0D0D;
+$danger: #E25858;
+
 .form {
   max-width: 1440px;
   height: 1024px;
-  background: #262626;
+  background: $gray-600;
   margin: auto;
   display: flex;
   align-items: center;
@@ -10,9 +23,10 @@
 
 .input_name {
   padding: 16px;
-  border: 1px solid #0D0D0D;
+  color: $gray-100;
+  border: 1px solid $gray-700;
   border-radius: 8px;
-  background: #262626;
+  background: $gray-500;
   margin-bottom: 20px;
   width: 600px;
   height: 55px;
@@ -25,8 +39,8 @@
   margin-left: 8px;
   cursor: pointer;
   margin-bottom: 20px;
-  background-color: #1E6F9F;
-  color: white;
+  background-color: $blue-dark;
+  color: $gray-100;
   border-radius: 8px;
   width: 125px;
   height: 52px;
@@ -40,24 +54,38 @@
 }
 
 .li {
-  margin-bottom: 20px;
-  border: 2px solid #000000;
+  background: $gray-500;
+  border: 1px solid $gray-400;
+  box-shadow: 0px 2px 8px rgb(0 0 0 / 6%);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
   width: 736px;
   height: 72px;
 }
 
 .p {
+  display: flex;
+  justify-content: space-between;
   padding: 7px 40px;
   padding: 0;
   margin: 0;
-  color: white;
+  color: $gray-100;
 }
 
 .fa-solid {
   border: none;
-  background: #808080;
-  background: rgba(255, 255, 255, 0);
-  font-size: 25px;
+  background: rgb(0, 0, 0, 0);
+  color: $gray-300;
+  font-size: 17px;
+  float: right;
+}
+
+.fa-solid:hover {
+  border: none;
+  color: $danger;
+  background: $gray-400;
+  font-size: 17px;
   float: right;
 }
 
@@ -74,7 +102,7 @@
   position: absolute;
   width: 1440px;
   height: 200px;
-  background: #0D0D0D;
+  background: $gray-700;
 }
 
 .todo-logo {
@@ -98,12 +126,14 @@
   height: 1em;
 }
 
-input:checked + p {
+input:checked + .todo-title {
   text-decoration: line-through;
+  color: $gray-300;
 }
 
 .tasks {
-  margin-top: 27px;
+  margin-top: 24px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
 }
@@ -115,7 +145,7 @@ input:checked + p {
   line-height: 15px;
   padding: 2px 8px;
   border-radius: 15px;
-  background: #333333;
+  background: $gray-400;
 }
 
 .counts + .left {
@@ -127,14 +157,14 @@ input:checked + p {
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #4EA8DE;
+  color: $blue;
 }
 
 .count-tasks-decide {
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #8284FA;
+  color: $purple;
 }
 
 .no-tasks-blocks {
@@ -147,7 +177,7 @@ input:checked + p {
   margin: auto;
   margin-bottom: 16px;
   font-size: 52px;
-  color: #808080;
+  color: $gray-300;
 }
 
 .no-tasks {
@@ -155,5 +185,43 @@ input:checked + p {
   font-size: 16px;
   line-height: 140%;
   text-align: center;
-  color: #808080;
+  color: $gray-300;
+}
+
+.checkbox-input {
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  vertical-align: middle;
+  background-color: rgb(255, 255, 255, 0);
+  border: 2px solid $blue;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-input:checked {
+  appearance: auto;
+  clip-path: circle(50% at 50% 50%);
+  background-color: $purple-dark;
+}
+
+.todo-title {
+  margin-right: auto;
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 140%;
+  color: $gray-100;
+}
+
+.what-time {
+  margin-right: 10px;
+  color: $gray-300;
+  font-size: 11px;
+  line-height: 140%;
+}
+
+input:checked + .what-time {
+  text-decoration: line-through;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
 import { getTodos } from "./store/reducers/user/todoAction"
 import Logo from "./images/Logo.png"

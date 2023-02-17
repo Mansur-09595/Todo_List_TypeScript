@@ -1,7 +1,7 @@
 export interface ITodos {
   _id: string;
   title: string;
-  created_at: string;
+  created_at: number;
   completed: boolean;
 }
 

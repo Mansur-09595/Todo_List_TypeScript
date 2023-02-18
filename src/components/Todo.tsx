@@ -8,7 +8,9 @@ interface Props {
 }
 
 const Todo: React.FC<Props> = ({ todo }) => {
-  const { isLoadingRemoveTodo } = useAppSelector((state) => state.todos);
+  const { isLoadingRemoveTodo, isLoadingUpdateTodo } = useAppSelector(
+    (state) => state.todos
+  );
   const dispatch = useAppDispatch();
 
   const handleDelete = (id: string) => {
@@ -50,11 +52,16 @@ const Todo: React.FC<Props> = ({ todo }) => {
   return (
     <div className="li">
       <p className="p">
-        <input className="checkbox-input" type="checkbox" checked={todo.completed} onChange={handleUpdate} />
+        {isLoadingUpdateTodo ? (
+          <div className="spinner-border" role="status">
+            <span className="sr-only"></span>
+          </div>
+        ) : (
+          <input className="checkbox-input" type="checkbox" checked={todo.completed} onChange={handleUpdate} />
+        )}
+
         <p className="todo-title">
-          {todo.title.length > 75
-            ? `${todo.title.substring(0, 75)}...`
-            : todo.title}
+          {todo.title.length > 75 ? `${todo.title.substring(0, 75)}...` : todo.title}
         </p>
         <span className="what-time">{whatTime()}</span>
         {isLoadingRemoveTodo ? (

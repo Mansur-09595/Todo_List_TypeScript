@@ -9,5 +9,7 @@ export type todoState = {
   todos: ITodos[];
   isLoading: boolean;
   isLoadingAddTodo: boolean,
+  isLoadingUpdateTodo: boolean,
   isLoadingRemoveTodo: boolean,
+  error: string | null;
 };

@@ -6,7 +6,9 @@ const initialState: todoState = {
   todos: [],
   isLoading: false,
   isLoadingAddTodo: false,
+  isLoadingUpdateTodo: false,
   isLoadingRemoveTodo: false,
+  error: null,
 };
 
 export const todoSlice = createSlice({
@@ -22,6 +24,11 @@ export const todoSlice = createSlice({
         state.isLoading = false
         state.todos = action.payload
     })
+    builder.addCase(getTodos.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message || "Something went wrong";
+    });
+    
     //addTodo
     builder.addCase(addTodo.pending, (state) => {
         state.isLoadingAddTodo = true
@@ -30,12 +37,17 @@ export const todoSlice = createSlice({
         state.isLoadingAddTodo = false
         state.todos = [...state.todos, action.payload];
     });
+    builder.addCase(addTodo.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message || "Something went wrong";
+    });
+
     //updateTodo
     builder.addCase(updateTodo.pending, (state) => {
-      state.isLoading = true
+      state.isLoadingUpdateTodo = true
     })
     builder.addCase(updateTodo.fulfilled, (state, action: PayloadAction<ITodos>) => {
-      state.isLoading = false
+      state.isLoadingUpdateTodo = false
       state.todos = state.todos.map(todo => {
         if (todo._id === action.payload._id) {
           return action.payload;
@@ -43,6 +55,11 @@ export const todoSlice = createSlice({
         return todo;
       });
     });
+    builder.addCase(updateTodo.rejected, (state, action) => {
+      state.isLoadingUpdateTodo = false;
+      state.error = action.error.message || "Something went wrong";
+    });
+
     //deleteTodo
     builder.addCase(deleteTodo.pending, (state) => {
       state.isLoadingRemoveTodo = true
@@ -50,6 +67,10 @@ export const todoSlice = createSlice({
     builder.addCase(deleteTodo.fulfilled, (state, action: PayloadAction<string>) => {
       state.isLoadingRemoveTodo = false
       state.todos = state.todos.filter((todo) => todo._id !== action.payload);
+    });
+    builder.addCase(deleteTodo.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message || "Something went wrong";
     });
   }
 });

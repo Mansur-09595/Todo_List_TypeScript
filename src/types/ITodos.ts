@@ -1,7 +1,7 @@
 export interface ITodos {
   _id: string;
   title: string;
-  created_at: number;
+  created_at: string;
   completed: boolean;
 }
 
@@ -11,5 +11,5 @@ export type todoState = {
   isLoadingAddTodo: boolean,
   isLoadingUpdateTodo: boolean,
   isLoadingRemoveTodo: boolean,
-  error: string | null;
+  error: boolean | number | string | null;
 };

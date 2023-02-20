@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { baseUrl } from "../../../API";
 
 export const getTodos = createAsyncThunk(
-    "users/upload", 
+    "todos/get", 
     async function () {
         const res = await fetch(`${baseUrl}/todos`);
         return await res.json();

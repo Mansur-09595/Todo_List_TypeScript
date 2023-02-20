@@ -60,7 +60,7 @@ $danger: #E25858;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 12px;
-  width: 736px;
+  max-width: 736px;
   height: 72px;
 }
 
@@ -107,7 +107,7 @@ $danger: #E25858;
 
 .todo-logo {
   margin-right: 9px;
-  width: 126px;
+  max-width: 126px;
   height: 48px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -115,14 +115,14 @@ $danger: #E25858;
 
 .unicode-logo {
   margin-top: 18px;
-  width: 111px;
+  max-width: 111px;
   height: 24px;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .spinner-border {
-  width: 1em;
+  max-width: 1em;
   height: 1em;
 }
 

@@ -2,6 +2,9 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { ITodos } from "../types/ITodos";
 import { deleteTodo, updateTodo } from "../store/reducers/user/todoAction";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/ru";
 
 interface Props {
   todo: ITodos;
@@ -21,32 +24,11 @@ const Todo: React.FC<Props> = ({ todo }) => {
     dispatch(updateTodo({ _id: todo._id, completed: !todo.completed }));
   };
 
-  const whatTime = () => {
-    const timeDiff = Date.now() - todo.created_at;
-    const minute = 60 * 1000;
-    const hour = 60 * minute;
-    const day = 24 * hour;
-    const week = 7 * day;
-    const month = 30 * day;
+  dayjs.locale("ru");
+  dayjs.extend(relativeTime);
 
-    if (timeDiff < minute) {
-      return "меньше минуты";
-    } else if (timeDiff < hour) {
-      const time = Math.floor(timeDiff / minute);
-      return `${time} минут назад`;
-    } else if (timeDiff < day) {
-      const time = Math.floor(timeDiff / hour);
-      return `${time} час назад`;
-    } else if (timeDiff < week) {
-      const time = Math.floor(timeDiff / day);
-      return `${time} день назад`;
-    } else if (timeDiff < month) {
-      const time = Math.floor(timeDiff / week);
-      return `${time} недель назад`;
-    } else {
-      const time = Math.floor(timeDiff / month);
-      return `${time} месяц назад`;
-    }
+  const whatTime = (created_at: string): string => {
+    return dayjs(+ created_at).fromNow(); 
   };
 
   return (
@@ -63,7 +45,7 @@ const Todo: React.FC<Props> = ({ todo }) => {
         <p className="todo-title">
           {todo.title.length > 75 ? `${todo.title.substring(0, 75)}...` : todo.title}
         </p>
-        <span className="what-time">{whatTime()}</span>
+        <span className="what-time">{whatTime(todo.created_at)}</span>
         {isLoadingRemoveTodo ? (
           <div className="spinner-border" role="status">
             <span className="sr-only"></span>
